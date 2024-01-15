@@ -1,45 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+
     <title>Admin Dashboard</title>
 </head>
+
+<style>
+    body {
+        width: 100%;
+        background-image: linear-gradient(rgb(255, 255, 255), rgb(135, 89, 228));
+        /* background: url('../static/3409297.jpg') no-repeat; */
+    }
+
+    :root {
+        --color: rgb(135, 89, 228)
+    }
+
+    .container {
+        border-radius: 12px;
+        border: 1px solid gray;
+        box-shadow: 10px 5px 5px var(--color);
+        height: 100vh;
+    }
+
+    .sec-div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        margin: 12px;
+        height: 50%;
+    }
+
+    h2 {
+        font-weight: bold;
+    }
+
+    .messagesend {
+        display: flex;
+        margin: auto;
+        border-radius: 12px;
+        background-color: var(--color);
+        padding: 22px;
+        margin-top: 32px;
+    }
+
+    .messagesend2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 12px;
+        background-color: var(--color);
+        padding: 32px;
+        position: relative;
+        top: 32%;
+    }
+
+    .left {
+        float: left;
+        clear: both;
+    }
+
+    .right {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+
+    }
+
+    label {
+        font-weight: bold;
+        font-size: 20px;
+
+    }
+
+    .message {
+        background-color: gray;
+        width: 34%;
+        padding: 10px;
+        margin: 17px 12px;
+        border: 2px solid black;
+        border-radius: 12px;
+        color: white;
+
+    }
+
+    .message2 {
+        float: inline-end;
+        background-color: gray;
+        width: 34%;
+        color: white;
+        padding: 10px;
+        margin: 17px 12px;
+        border: 2px solid black;
+        border-radius: 12px;
+
+
+    }
+
+    .messageinput {
+        width: 92%;
+        border-radius: 2px solid black;
+        border-radius: 6px;
+        height: 34px;
+
+    }
+
+    .btn {
+        cursor: pointer;
+        border: 2px solid black;
+        border-radius: 6px;
+        height: 40px;
+        font-weight: bold;
+        width: 40%;
+        background-color: var(--color);
+    }
+</style>
+
 <body>
     <div class="container">
-        <h2>Welcome, {{ username }}!</h2>
-        <h3>User Queries:</h3>
-        {% for user, queries in data.items() %}
-            <h4>{{ user }}</h4>
-            <ul>
-                {% for query in queries['queries'] %}
-                    <li>
-                        {{ query }}
-                        <form action="{{ url_for('admin_dashboard', username=username) }}" method="post" class="message-form">
-                            <label for="message">Reply:</label>
-                            <input type="text" id="message" name="message" required>
-                            <input type="hidden" id="recipient" name="recipient" value="{{ user }}">
-                            <input type="hidden" id="query_index" name="query_index" value="{{ loop.index0 }}">
-                            <input type="submit" value="Send">
-                        </form>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% endfor %}
+        <div class="sec-div">
+            <div class="secinner">
+                <h2>Welcome, Sunny Srivastava</h2>
+                <h3>User Queries:</h3>
 
-        <form action="{{ url_for('admin_dashboard', username=username) }}" method="post" class="message-form">
-            <label for="message">Send Message to Users:</label>
-            <input type="text" id="message" name="message" required>
-            <label for="recipient">Select User:</label>
-            <select id="recipient" name="recipient" required>
-                {% for user, _ in data.items() %}
+                <h4>srivastavasunny359@gmail.com:</h4>
+                <ul>
+                    <li>
+                        <p class="message">Hii</p>
+                        <div class="right">
+                            <ul>
+
+                                <p class="message2">Hello</p>
+
+
+                            </ul>
+                        </div>
+
+
+                        <div class="messagesend">
+
+                            <form action="{{ url_for('admin_dashboard', username=username) }}" method="post"
+                                class="message-form">
+
+                                <label for="message">Reply:</label>
+                                <div style="display: flex;">
+
+                                    <input class="messageinput" type="text" id="message" name="message" required>
+                                    <input type="hidden" id="recipient" name="recipient" value="{{ user }}">
+                                    <input type="hidden" id="query_index" name="query_index" value="{{ loop.index0 }}">
+                                    <input class="btn" type="submit" value="Send">
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+
+
+                </ul>
+            </div>
+            <div class="secinner">
+
+
+                <h2>Welcome, Sunny Srivastava</h2>
+                <h3>User Queries:</h3>
+
+                <h4>srivastavasunny359@gmail.com:</h4>
+                <ul>
+                    <li>
+                        <p class="message">Hii</p>
+                        <div class="right">
+                            <ul>
+
+                                <p class="message2">Hello</p>
+
+
+                            </ul>
+                        </div>
+
+                        <div class="messagesend">
+
+                            <form action="{{ url_for('admin_dashboard', username=username) }}" method="post"
+                                class="message-form">
+
+                                <label for="message">Reply:</label>
+                                <div style="display: flex;">
+
+                                    <input class="messageinput" type="text" id="message" name="message" required>
+                                    <input type="hidden" id="recipient" name="recipient" value="{{ user }}">
+                                    <input type="hidden" id="query_index" name="query_index" value="{{ loop.index0 }}">
+                                    <input class="btn" type="submit" value="Send">
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+
+
+                </ul>
+            </div>
+            <div class="secinner">
+                <h2>Welcome, Sunny Srivastava</h2>
+                <h3>User Queries:</h3>
+
+                <h4>srivastavasunny359@gmail.com:</h4>
+                <ul>
+
+                    <li>
+                        <p class="message">Hii</p>
+                        <div class="right">
+                            <ul>
+
+                                <p class="message2">Hello</p>
+
+
+                            </ul>
+                        </div>
+
+                        <div class="messagesend">
+
+                            <form action="{{ url_for('admin_dashboard', username=username) }}" method="post"
+                                class="message-form">
+
+                                <label for="message">Reply:</label>
+                                <div style="display: flex;">
+
+                                    <input class="messageinput" type="text" id="message" name="message" required>
+                                    <input type="hidden" id="recipient" name="recipient" value="{{ user }}">
+                                    <input type="hidden" id="query_index" name="query_index" value="{{ loop.index0 }}">
+                                    <input class="btn" type="submit" value="Send">
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="secinner">
+                <h2>Welcome, Sunny Srivastava</h2>
+                <h3>User Queries:</h3>
+
+                <h4>srivastavasunny359@gmail.com:</h4>
+                <ul>
+                    <li>
+                        <p class="message">Hii</p>
+                        <div class="right">
+                            <ul>
+
+                                <p class="message2">Hello</p>
+
+
+                            </ul>
+                        </div>
+
+                        <div class="messagesend">
+
+                            <form action="{{ url_for('admin_dashboard', username=username) }}" method="post"
+                                class="message-form">
+
+                                <label for="message">Reply:</label>
+                                <div style="display: flex;">
+
+                                    <input class="messageinput" type="text" id="message" name="message" required>
+                                    <input type="hidden" id="recipient" name="recipient" value="{{ user }}">
+                                    <input type="hidden" id="query_index" name="query_index" value="{{ loop.index0 }}">
+                                    <input class="btn" type="submit" value="Send">
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="messagesend2">
+            <form action="{{ url_for('admin_dashboard', username=username) }}" method="post" class="message-form">
+                <label for="message">Send Message to Users:</label>
+                <input class="messageinput" type="text" id="message" name="message" required>
+                <label for="recipient">Select User:</label>
+                <select id="recipient" name="recipient" required>
+                    srivastavasunny359@gmail.com:
                     <option value="{{ user }}">{{ user }}</option>
-                {% endfor %}
-            </select>
-            <input type="hidden" id="query_index" name="query_index" value="-1">
-            <input type="submit" value="Send">
-        </form>
+
+                </select>
+                <input type="hidden" id="query_index" name="query_index" value="-1">
+                <input class="btn" type="submit" value="Send">
+            </form>
+        </div>
     </div>
 </body>
+
 </html>
